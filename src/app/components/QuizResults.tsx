@@ -1,4 +1,4 @@
-import clairePhoto from "figma:asset/509915e3e9f8ee402112e9c8255018db94ff0584.png";
+const clairePhoto = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80";
 import { trackCTAClick } from "../../lib/analytics";
 
 interface QuizResultsProps {
