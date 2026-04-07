@@ -1,4 +1,4 @@
-import logo from "figma:asset/d70ba1920dba670a78c58643b57016f85ef1c653.png";
+const logo = "";
 
 interface QuizProgressProps {
   currentStep: number;
