@@ -1,4 +1,4 @@
-import heroImage from "figma:asset/df94c0f738aae16411ccc79df784dc46d674f057.png";
+const heroImage = "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80";
 
 interface QuizIntroProps {
   onStart: () => void;
