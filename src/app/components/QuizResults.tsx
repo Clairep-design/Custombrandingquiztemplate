@@ -156,7 +156,7 @@ export function QuizResults({
                 clear action plan — and in many cases, we start building
                 immediately.
               </p>
-              <p className="font-medium">Investment: from $1,500</p>
+              <p className="font-medium">Investment: $399</p>
               <button
                 className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors"
                 onClick={() => trackCTAClick("VIP Brand Intensive")}
