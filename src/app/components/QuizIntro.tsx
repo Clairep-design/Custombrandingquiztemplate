@@ -1,4 +1,4 @@
-const heroImage = "/src/assets/Quiz Page 1 Image_ID5021.jpg";
+const heroImage = "https://raw.githubusercontent.com/Clairep-design/Custombrandingquiztemplate/main/src/assets/Quiz%20Page%201%20Image_ID5021.jpg";
 
 interface QuizIntroProps {
   onStart: () => void;
