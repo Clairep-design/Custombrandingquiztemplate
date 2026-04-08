@@ -157,12 +157,12 @@ export function QuizResults({
                 immediately.
               </p>
               <p className="font-medium">Investment: $399</p>
-              <button
-                className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors"
-                onClick={() => trackCTAClick("VIP Brand Intensive")}
-              >
-                Book your VIP Brand Intensive →
-              </button>
+              href="https://www.sonderbyclaire.co.nz/appointments"
+  target="_blank"
+  className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors inline-block"
+>
+  Book your VIP Brand Intensive →
+</a>
             </div>
           </div>
         </div>
