@@ -11,9 +11,7 @@ export function QuizIntro({ onStart }: QuizIntroProps) {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="text-sm tracking-[0.2em] uppercase text-muted-foreground">
-                Sonder by Claire
-              </p>
+              <img src="https://raw.githubusercontent.com/Clairep-design/Custombrandingquiztemplate/main/src/assets/Sonder-logo.png" alt="Sonder by Claire" className="h-8 w-auto" />
               <h1 className="text-5xl md:text-6xl leading-[1.1] tracking-tight">
                 How strong is your brand experience?
               </h1>
