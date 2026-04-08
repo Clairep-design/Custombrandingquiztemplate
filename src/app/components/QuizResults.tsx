@@ -1,4 +1,4 @@
-const clairePhoto = "https://raw.githubusercontent.com/Clairep-design/Custombrandingquiztemplate/main/src/assets/Quiz_Results%20Page_Claire%20Prangley%20Sonder%20Studio%20Creative_.jpg";
+const clairePhoto = "https://raw.githubusercontent.com/Clairep-design/Custombrandingquiztemplate/main/src/assets/Quiz_Results%20Page_Claire%20Prangley%20Sonder%20Studio%20Creative_PageShootSwoonBW.jpg";
 import { trackCTAClick } from "../../lib/analytics";
 
 interface QuizResultsProps {
