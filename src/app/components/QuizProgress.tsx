@@ -1,4 +1,4 @@
-const logo = "https://raw.githubusercontent.com/Clairep-design/Custombrandingquiztemplate/main/src/assets/Sonder-by-Claire-Brand-Strategy-Studio.jpg";
+const logo = "https://raw.githubusercontent.com/Clairep-design/Custombrandingquiztemplate/main/src/assets/Sonder-logo.png";
 
 interface QuizProgressProps {
   currentStep: number;
