@@ -11,7 +11,7 @@ export function QuizProgress({ currentStep, totalSteps }: QuizProgressProps) {
   return (
     <div className="mb-12">
       <div className="flex justify-center mb-8">
-        <img src={logo} alt="Sonder by Claire" className="h-8" />
+        <img src={logo} alt="Sonder by Claire" className="h-16" />
       </div>
       <div className="flex justify-between items-center mb-3">
         <p className="text-sm text-muted-foreground">
