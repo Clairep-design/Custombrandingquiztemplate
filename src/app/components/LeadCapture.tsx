@@ -20,36 +20,26 @@ export function LeadCapture({ onSubmit }: LeadCaptureProps) {
     if (firstName && email && businessType && consent) {
       setIsSubmitting(true);
 
-      // Submit to Formspree
+      // Submit to Tally via hidden iframe method
       try {
-        const response = await fetch("https://tally.so/r/pb751J", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstName,
-            email,
-            businessType,
-            consent,
-            timestamp: new Date().toISOString(),
-          }),
-        });
+        const tallyData = new FormData();
+        tallyData.append("firstName", firstName);
+        tallyData.append("email", email);
+        tallyData.append("businessType", businessType);
+        tallyData.append("consent", String(consent));
+        tallyData.append("timestamp", new Date().toISOString());
 
-        if (response.ok) {
-          // Continue with quiz
-          onSubmit({ firstName, email, businessType });
-        } else {
-          console.error("Form submission failed");
-          // Still allow them to continue even if Formspree fails
-          onSubmit({ firstName, email, businessType });
-        }
+        await fetch("https://tally.so/r/pb751J", {
+          method: "POST",
+          mode: "no-cors",
+          body: tallyData,
+        });
       } catch (error) {
-        console.error("Error submitting form:", error);
-        // Still allow them to continue even if there's an error
-        onSubmit({ firstName, email, businessType });
+        console.error("Tally submission error:", error);
       } finally {
         setIsSubmitting(false);
+        // Always continue to quiz regardless of Tally response
+        onSubmit({ firstName, email, businessType });
       }
     }
   };
