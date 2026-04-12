@@ -22,7 +22,7 @@ export function LeadCapture({ onSubmit }: LeadCaptureProps) {
 
       // Submit to Formspree
       try {
-        const response = await fetch("https://formspree.io/f/mnjoradj", {
+        const response = await fetch("https://tally.so/r/pb751J", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
