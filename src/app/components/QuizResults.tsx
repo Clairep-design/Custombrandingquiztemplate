@@ -178,7 +178,7 @@ export function QuizResults({
             strategy insights designed for service-based founders.
           </p>
           
-            href="https://instagram.com/sonderbyclaire"
+            <a href="https://instagram.com/sonderbyclaire"
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline"
