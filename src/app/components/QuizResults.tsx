@@ -158,12 +158,7 @@ export function QuizResults({ score, categoryScores, onRestart }: QuizResultsPro
           <p className="text-sm text-muted-foreground mb-4">
             Not quite ready to book? Follow along on Instagram for weekly brand strategy insights designed for service-based founders.
           </p>
-          
-            href="https://instagram.com/sonderbyclaire"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
+          <a href="https://instagram.com/sonderbyclaire" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
             @sonderbyclaire
           </a>
         </div>
