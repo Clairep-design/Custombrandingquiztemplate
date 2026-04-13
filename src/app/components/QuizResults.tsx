@@ -51,4 +51,151 @@ const resultTiers: ResultTier[] = [
     description:
       "You've built something solid. The work now is fine-tuning the details that turn a strong brand into a market-leading one.",
     cta: "Let's take your brand to its peak →",
-    b
+    bgColor: "bg-[#E8D5B7]/10 border-[#E8D5B7]",
+  },
+];
+
+function getResultTier(score: number): ResultTier {
+  if (score <= 24) return resultTiers[0];
+  if (score <= 32) return resultTiers[1];
+  if (score <= 39) return resultTiers[2];
+  return resultTiers[3];
+}
+
+export function QuizResults({
+  score,
+  categoryScores,
+  onRestart,
+}: QuizResultsProps) {
+  const tier = getResultTier(score);
+
+  const categories = [
+    { name: "Visual Identity", key: "visual", max: 9 },
+    { name: "Digital Presence", key: "digital", max: 9 },
+    { name: "Client Experience", key: "client", max: 9 },
+    { name: "Proposals & Documents", key: "proposals", max: 9 },
+    { name: "Messaging & Social Media", key: "messaging", max: 9 },
+  ];
+
+  return (
+    <div className="min-h-screen py-16 px-6">
+      <div className="max-w-4xl mx-auto space-y-12">
+        <div className="text-center space-y-4">
+          <p className="text-sm tracking-[0.2em] uppercase text-muted-foreground">
+            Your Results
+          </p>
+          <h1 className="text-5xl md:text-6xl tracking-tight">
+            {score} / 45
+          </h1>
+        </div>
+
+        <div className={`p-12 border ${tier.bgColor}`}>
+          <div className="space-y-6">
+            <div className="flex justify-between items-start">
+              <div>
+                <h2 className="text-3xl tracking-tight mb-2">{tier.title}</h2>
+                <p className="text-sm text-muted-foreground">{tier.range}</p>
+              </div>
+            </div>
+
+            <p className="text-xl leading-relaxed">{tier.headline}</p>
+            <p className="text-muted-foreground leading-relaxed">
+              {tier.description}
+            </p>
+
+            
+              href="https://www.sonderbyclaire.co.nz/contact"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackCTAClick(tier.cta)}
+              className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors inline-block"
+            >
+              {tier.cta}
+            </a>
+          </div>
+        </div>
+
+        <div className="space-y-8">
+          <h3 className="text-2xl tracking-tight">Your category breakdown</h3>
+
+          <div className="space-y-6">
+            {categories.map((category) => {
+              const categoryScore = categoryScores[category.key] || 0;
+              const percentage = (categoryScore / category.max) * 100;
+
+              return (
+                <div key={category.key} className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <p className="font-medium">{category.name}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {categoryScore} / {category.max}
+                    </p>
+                  </div>
+                  <div className="w-full h-2 bg-muted">
+                    <div
+                      className="h-full bg-primary transition-all duration-1000"
+                      style={{ width: `${percentage}%` }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="bg-card p-12 border border-border space-y-6">
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            <img
+              src={clairePhoto}
+              alt="Claire from Sonder by Claire"
+              className="w-32 h-32 object-cover flex-shrink-0"
+            />
+            <div className="space-y-6 flex-1">
+              <h3 className="text-2xl tracking-tight">Ready to act on this?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                A VIP Brand Intensive is the fastest way to move from insight to
+                momentum. In a focused half-day session, we'll audit your brand,
+                identify your highest-leverage opportunities, and leave you with a
+                clear action plan — and in many cases, we start building
+                immediately.
+              </p>
+              <p className="font-medium">Investment: $399</p>
+              
+                href="https://www.sonderbyclaire.co.nz/appointments"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors inline-block"
+              >
+                Book your VIP Brand Intensive →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center py-8 border-t border-border">
+          <p className="text-sm text-muted-foreground mb-4">
+            Not quite ready to book? Follow along on Instagram for weekly brand
+            strategy insights designed for service-based founders.
+          </p>
+          
+            href="https://instagram.com/sonderbyclaire"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            @sonderbyclaire
+          </a>
+        </div>
+
+        <div className="text-center">
+          <button
+            onClick={onRestart}
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+          >
+            Take the assessment again
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
