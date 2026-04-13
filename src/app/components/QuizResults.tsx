@@ -91,15 +91,7 @@ export function QuizResults({ score, categoryScores, onRestart }: QuizResultsPro
             </div>
             <p className="text-xl leading-relaxed">{tier.headline}</p>
             <p className="text-muted-foreground leading-relaxed">{tier.description}</p>
-            
-              href="https://www.sonderbyclaire.co.nz/contact"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackCTAClick(tier.cta)}
-              className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors inline-block"
-            >
-              {tier.cta}
-            </a>
+            <a href="https://www.sonderbyclaire.co.nz/contact" target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick(tier.cta)} className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors inline-block">{tier.cta}</a>
           </div>
         </div>
 
@@ -113,15 +105,10 @@ export function QuizResults({ score, categoryScores, onRestart }: QuizResultsPro
                 <div key={category.key} className="space-y-2">
                   <div className="flex justify-between items-center">
                     <p className="font-medium">{category.name}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {categoryScore} / {category.max}
-                    </p>
+                    <p className="text-sm text-muted-foreground">{categoryScore} / {category.max}</p>
                   </div>
                   <div className="w-full h-2 bg-muted">
-                    <div
-                      className="h-full bg-primary transition-all duration-1000"
-                      style={{ width: `${percentage}%` }}
-                    />
+                    <div className="h-full bg-primary transition-all duration-1000" style={{ width: `${percentage}%` }} />
                   </div>
                 </div>
               );
@@ -131,45 +118,23 @@ export function QuizResults({ score, categoryScores, onRestart }: QuizResultsPro
 
         <div className="bg-card p-12 border border-border">
           <div className="flex flex-col md:flex-row gap-8 items-center">
-            <img
-              src={clairePhoto}
-              alt="Claire from Sonder by Claire"
-              className="w-32 h-32 object-cover flex-shrink-0"
-            />
+            <img src={clairePhoto} alt="Claire from Sonder by Claire" className="w-32 h-32 object-cover flex-shrink-0" />
             <div className="space-y-6 flex-1">
               <h3 className="text-2xl tracking-tight">Ready to act on this?</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                A VIP Brand Intensive is the fastest way to move from insight to momentum. In a focused half-day session, we will audit your brand, identify your highest-leverage opportunities, and leave you with a clear action plan.
-              </p>
+              <p className="text-muted-foreground leading-relaxed">A VIP Brand Intensive is the fastest way to move from insight to momentum. In a focused half-day session, we will audit your brand, identify your highest-leverage opportunities, and leave you with a clear action plan.</p>
               <p className="font-medium">Investment: $399</p>
-              
-                href="https://www.sonderbyclaire.co.nz/appointments"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors inline-block"
-              >
-                Book your VIP Brand Intensive
-              </a>
+              <a href="https://www.sonderbyclaire.co.nz/appointments" target="_blank" rel="noopener noreferrer" className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors inline-block">Book your VIP Brand Intensive</a>
             </div>
           </div>
         </div>
 
         <div className="text-center py-8 border-t border-border">
-          <p className="text-sm text-muted-foreground mb-4">
-            Not quite ready to book? Follow along on Instagram for weekly brand strategy insights designed for service-based founders.
-          </p>
-          <a href="https://instagram.com/sonderbyclaire" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-            @sonderbyclaire
-          </a>
+          <p className="text-sm text-muted-foreground mb-4">Not quite ready to book? Follow along on Instagram for weekly brand strategy insights designed for service-based founders.</p>
+          <a href="https://instagram.com/sonderbyclaire" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">@sonderbyclaire</a>
         </div>
 
         <div className="text-center">
-          <button
-            onClick={onRestart}
-            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-          >
-            Take the assessment again
-          </button>
+          <button onClick={onRestart} className="text-muted-foreground hover:text-foreground transition-colors text-sm">Take the assessment again</button>
         </div>
 
       </div>
