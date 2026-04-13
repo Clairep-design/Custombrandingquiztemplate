@@ -14,53 +14,33 @@ export function LeadCapture({ onSubmit }: LeadCaptureProps) {
   const [businessType, setBusinessType] = useState("");
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (firstName && email && businessType && consent) {
       setIsSubmitting(true);
-      setError("");
 
       try {
-        const apiKey = import.meta.env.VITE_MAILCHIMP_API_KEY;
-        const audienceId = import.meta.env.VITE_MAILCHIMP_AUDIENCE_ID;
-        const server = apiKey.split("-")[1];
+        const formData = new FormData();
+        formData.append("EMAIL", email);
+        formData.append("FNAME", firstName);
+        formData.append("BTYPE", businessType);
+        formData.append("CHECKBOX8", "true");
+        formData.append("b_6693acf097c8bcbbc25223b6a_4a0f533d7a", "");
 
-        const response = await fetch(
-          `https://${server}.api.mailchimp.com/3.0/lists/${audienceId}/members`,
+        await fetch(
+          "https://sonderbyclaire.us1.list-manage.com/subscribe/post?u=6693acf097c8bcbbc25223b6a&id=4a0f533d7a&f_id=0005e3e4f0",
           {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${apiKey}`,
-            },
-            body: JSON.stringify({
-              email_address: email,
-              status: "subscribed",
-              merge_fields: {
-                FNAME: firstName,
-                BTYPE: businessType,
-              },
-              tags: ["quiz-lead"],
-            }),
+            mode: "no-cors",
+            body: formData,
           }
         );
-
-        if (response.ok || response.status === 400) {
-          // 400 can mean already subscribed — still let them through
-          onSubmit({ firstName, email, businessType });
-        } else {
-          console.error("Mailchimp error:", response.status);
-          // Still let them continue even if API fails
-          onSubmit({ firstName, email, businessType });
-        }
       } catch (error) {
-        console.error("Submission error:", error);
-        // Still let them continue
-        onSubmit({ firstName, email, businessType });
+        console.error("Mailchimp submission error:", error);
       } finally {
         setIsSubmitting(false);
+        onSubmit({ firstName, email, businessType });
       }
     }
   };
@@ -139,10 +119,6 @@ export function LeadCapture({ onSubmit }: LeadCaptureProps) {
                   from Sonder by Claire. No spam, ever.
                 </label>
               </div>
-
-              {error && (
-                <p className="text-sm text-red-500">{error}</p>
-              )}
 
               <button
                 type="submit"
