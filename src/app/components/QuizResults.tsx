@@ -20,34 +20,34 @@ interface ResultTier {
 const resultTiers: ResultTier[] = [
   {
     title: "Building blocks",
-    range: "15–24 pts",
-    headline: "Every great brand starts somewhere. Yours has real potential — and a clear path forward.",
+    range: "15-24 pts",
+    headline: "Every great brand starts somewhere. Yours has real potential and a clear path forward.",
     description: "Your brand has foundations that can be built on. The gaps are identifiable and we know exactly how to close them.",
-    cta: "Let's map out your brand strategy →",
+    cta: "Lets map out your brand strategy",
     bgColor: "bg-[#A8CCC4]/10 border-[#A8CCC4]",
   },
   {
     title: "In motion",
-    range: "25–32 pts",
-    headline: "You're making moves — but some gaps are quietly costing you.",
+    range: "25-32 pts",
+    headline: "You are making moves but some gaps are quietly costing you.",
     description: "Elements of your brand are working well. A few focused priorities will create real momentum and start converting better clients.",
-    cta: "Let's find your highest-impact priorities →",
+    cta: "Lets find your highest-impact priorities",
     bgColor: "bg-[#B8AED1]/10 border-[#B8AED1]",
   },
   {
     title: "Taking shape",
-    range: "33–39 pts",
+    range: "33-39 pts",
     headline: "Strong foundations, some real opportunities.",
-    description: "Your brand is doing well — clear opportunities exist to sharpen it into something truly standout. This is the level where refinement creates outsized results.",
-    cta: "Let's uncover your brand opportunities →",
+    description: "Your brand is doing well. Clear opportunities exist to sharpen it into something truly standout. This is the level where refinement creates outsized results.",
+    cta: "Lets uncover your brand opportunities",
     bgColor: "bg-[#D4A5A5]/10 border-[#D4A5A5]",
   },
   {
     title: "Brand powerhouse",
-    range: "40–45 pts",
-    headline: "You're operating at a high level. Time to make it exceptional.",
-    description: "You've built something solid. The work now is fine-tuning the details that turn a strong brand into a market-leading one.",
-    cta: "Let's take your brand to its peak →",
+    range: "40-45 pts",
+    headline: "You are operating at a high level. Time to make it exceptional.",
+    description: "You have built something solid. The work now is fine-tuning the details that turn a strong brand into a market-leading one.",
+    cta: "Lets take your brand to its peak",
     bgColor: "bg-[#E8D5B7]/10 border-[#E8D5B7]",
   },
 ];
@@ -66,8 +66,8 @@ export function QuizResults({ score, categoryScores, onRestart }: QuizResultsPro
     { name: "Visual Identity", key: "visual", max: 9 },
     { name: "Digital Presence", key: "digital", max: 9 },
     { name: "Client Experience", key: "client", max: 9 },
-    { name: "Proposals & Documents", key: "proposals", max: 9 },
-    { name: "Messaging & Social Media", key: "messaging", max: 9 },
+    { name: "Proposals and Documents", key: "proposals", max: 9 },
+    { name: "Messaging and Social Media", key: "messaging", max: 9 },
   ];
 
   return (
@@ -139,7 +139,7 @@ export function QuizResults({ score, categoryScores, onRestart }: QuizResultsPro
             <div className="space-y-6 flex-1">
               <h3 className="text-2xl tracking-tight">Ready to act on this?</h3>
               <p className="text-muted-foreground leading-relaxed">
-                A VIP Brand Intensive is the fastest way to move from insight to momentum. In a focused half-day session, we'll audit your brand, identify your highest-leverage opportunities, and leave you with a clear action plan — and in many cases, we start building immediately.
+                A VIP Brand Intensive is the fastest way to move from insight to momentum. In a focused half-day session, we will audit your brand, identify your highest-leverage opportunities, and leave you with a clear action plan.
               </p>
               <p className="font-medium">Investment: $399</p>
               
@@ -148,7 +148,7 @@ export function QuizResults({ score, categoryScores, onRestart }: QuizResultsPro
                 rel="noopener noreferrer"
                 className="bg-primary text-primary-foreground px-8 py-4 hover:bg-primary/90 transition-colors inline-block"
               >
-                Book your VIP Brand Intensive →
+                Book your VIP Brand Intensive
               </a>
             </div>
           </div>
