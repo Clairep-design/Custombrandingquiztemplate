@@ -21,6 +21,7 @@ export function LeadCapture({ onSubmit }: LeadCaptureProps) {
       setIsSubmitting(true);
 
       try {
+        // Step 1 — Add to Mailchimp via embedded form method
         const formData = new FormData();
         formData.append("EMAIL", email);
         formData.append("FNAME", firstName);
@@ -34,6 +35,26 @@ export function LeadCapture({ onSubmit }: LeadCaptureProps) {
             method: "POST",
             mode: "no-cors",
             body: formData,
+          }
+        );
+
+        // Step 2 — Apply quiz-lead tag via Mailchimp API
+        const apiKey = import.meta.env.VITE_MAILCHIMP_API_KEY;
+        const audienceId = import.meta.env.VITE_MAILCHIMP_AUDIENCE_ID;
+        const server = apiKey.split("-")[1];
+        const emailEncoded = encodeURIComponent(email.toLowerCase());
+
+        await fetch(
+          `https://${server}.api.mailchimp.com/3.0/lists/${audienceId}/members/${emailEncoded}/tags`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({
+              tags: [{ name: "quiz-lead", status: "active" }],
+            }),
           }
         );
       } catch (error) {
