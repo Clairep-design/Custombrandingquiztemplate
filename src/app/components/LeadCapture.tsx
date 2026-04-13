@@ -14,32 +14,53 @@ export function LeadCapture({ onSubmit }: LeadCaptureProps) {
   const [businessType, setBusinessType] = useState("");
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (firstName && email && businessType && consent) {
       setIsSubmitting(true);
+      setError("");
 
-      // Submit to Tally via hidden iframe method
       try {
-        const tallyData = new FormData();
-        tallyData.append("firstName", firstName);
-        tallyData.append("email", email);
-        tallyData.append("businessType", businessType);
-        tallyData.append("consent", String(consent));
-        tallyData.append("timestamp", new Date().toISOString());
+        const apiKey = import.meta.env.VITE_MAILCHIMP_API_KEY;
+        const audienceId = import.meta.env.VITE_MAILCHIMP_AUDIENCE_ID;
+        const server = apiKey.split("-")[1];
 
-        await fetch("https://tally.so/r/pb751J", {
-          method: "POST",
-          mode: "no-cors",
-          body: tallyData,
-        });
+        const response = await fetch(
+          `https://${server}.api.mailchimp.com/3.0/lists/${audienceId}/members`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({
+              email_address: email,
+              status: "subscribed",
+              merge_fields: {
+                FNAME: firstName,
+                BTYPE: businessType,
+              },
+              tags: ["quiz-lead"],
+            }),
+          }
+        );
+
+        if (response.ok || response.status === 400) {
+          // 400 can mean already subscribed — still let them through
+          onSubmit({ firstName, email, businessType });
+        } else {
+          console.error("Mailchimp error:", response.status);
+          // Still let them continue even if API fails
+          onSubmit({ firstName, email, businessType });
+        }
       } catch (error) {
-        console.error("Tally submission error:", error);
+        console.error("Submission error:", error);
+        // Still let them continue
+        onSubmit({ firstName, email, businessType });
       } finally {
         setIsSubmitting(false);
-        // Always continue to quiz regardless of Tally response
-        onSubmit({ firstName, email, businessType });
       }
     }
   };
@@ -118,6 +139,10 @@ export function LeadCapture({ onSubmit }: LeadCaptureProps) {
                   from Sonder by Claire. No spam, ever.
                 </label>
               </div>
+
+              {error && (
+                <p className="text-sm text-red-500">{error}</p>
+              )}
 
               <button
                 type="submit"
